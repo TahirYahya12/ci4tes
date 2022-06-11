@@ -14,6 +14,6 @@ class KomikModel extends Model
         if ($slug == false) {
             return $this->findAll();
         }
-        return $this->komikModel->where(['slug' => $slug])->first();
+        return $this->where(['slug' => $slug])->first();
     }
 }

@@ -14,33 +14,19 @@ class Komik extends BaseController
     }
     public function index()
     {
-        $komik = $this->komikModel->findAll();
-
         $data = [
             'title' => 'komik',
-            'komik' => $komik
+            'komik' => $this->komikModel->getKomik()
         ];
-
-        // cara konek db tanpa model
-        // $db = \Config\Database::connect();
-        // $komik = $db->query("SELECT * FROM komik");
-        // foreach ($komik->getResultArray() as $row) {
-        //     d($row);
-        // }
-
-        // konek DB dengan model
-        // $komikModel = new \App\Models\KomikModel();
-        // $komikModel = new KomikModel(); //buatkan namespace
-        // $komik = $this->komikModel->findAll();
-        // dd($komik);
-
-
-
         return view('komik/index', $data);
     }
 
     public function detail($slug)
     {
-        $komik = $this->komikModel->where(['slug' => $slug])->first();
+        $data = [
+            'title' => 'Detail Komik',
+            'komik' => $this->komikModel->getKomik($slug)
+        ];
+        return view('komik/detail', $data);
     }
 }
